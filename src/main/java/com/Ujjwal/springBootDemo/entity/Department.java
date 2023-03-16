@@ -1,21 +1,30 @@
 package com.Ujjwal.springBootDemo.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Department {
-	private Long departmentIdLong;
-	private String departmentNameg;
+	
+	@Id
+	@GeneratedValue(strategy  = GenerationType.AUTO)
+	private Long departmentId;
+	private String departmentName;
 	private String departmentAddress;
 	private String departmentCode;
-	public Long getDepartmentIdLong() {
-		return departmentIdLong;
+	public Long getdepartmentId() {
+		return departmentId;
 	}
-	public void setDepartmentIdLong(Long departmentIdLong) {
-		this.departmentIdLong = departmentIdLong;
+	public void setdepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
 	}
-	public String getDepartmentNameg() {
-		return departmentNameg;
+	public String getDepartmentName() {
+		return departmentName;
 	}
-	public void setDepartmentNameg(String departmentNameg) {
-		this.departmentNameg = departmentNameg;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 	public String getDepartmentAddress() {
 		return departmentAddress;
