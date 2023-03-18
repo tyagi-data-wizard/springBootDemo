@@ -44,27 +44,37 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@Override
 	public Department updateDepartment(Long departmentId, Department department) {
-		// TODO Auto-generated method stub
+
+		//fetching the department whose info we want to update via departmentId
 		Department oldDepartment = departmentRepository.findById(departmentId).get();
-		
+
+		//checking if parameters are not null & not blank, then update the values
 		if(Objects.nonNull(department.getDepartmentName()) &&
 				!"".equals(department.getDepartmentName())) {
 			oldDepartment.setDepartmentName(department.getDepartmentName());
 		}
-		
+
+		//checking if parameters are not null & not blank, then update the values
 		if(Objects.nonNull(department.getDepartmentCode()) &&
 				!"".equals(department.getDepartmentCode())) {
 			oldDepartment.setDepartmentCode(department.getDepartmentCode());
 		}
-		
+
+		// checking if parameters are not null & not blank, then update the values
 		if(Objects.nonNull(department.getDepartmentAddress()) &&
 				!"".equals(department.getDepartmentAddress())) {
 			oldDepartment.setDepartmentAddress(department.getDepartmentAddress());
 		}
-		
+
+		//saving the changes made to our department in db
 		return departmentRepository.save(oldDepartment);
 	}
 
-	
-	
+
+	@Override
+	public Department fetchDepartmentByName(String departmentName) {
+		return departmentRepository.findByDepartmentName(departmentName);
+	}
+
+
 }

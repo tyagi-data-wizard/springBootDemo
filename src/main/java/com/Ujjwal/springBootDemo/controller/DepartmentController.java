@@ -49,12 +49,16 @@ public class DepartmentController {
 		return "Department Deleted Successfullyy!";
 		
 	}
-	
-	
+
 	@PutMapping("/departments/{id}")
 	public Department updateDepartment(@PathVariable("id") Long departmentId,@RequestBody Department department) {
 		return departmentService.updateDepartment(departmentId,department);
 		
+	}
+
+	@GetMapping("/departments/name/{name}")
+	public Department fetchDepartmentByName(@PathVariable("name") String departmentName){
+		return departmentService.fetchDepartmentByName(departmentName);
 	}
 	
 
