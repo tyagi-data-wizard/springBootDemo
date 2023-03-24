@@ -5,8 +5,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Department {
 	
 	@Id
@@ -16,32 +24,5 @@ public class Department {
 	private String departmentName;
 	private String departmentAddress;
 	private String departmentCode;
-	
-	
-	
-	public Long getdepartmentId() {
-		return departmentId;
-	}
-	public void setdepartmentId(Long departmentId) {
-		this.departmentId = departmentId;
-	}
-	public String getDepartmentName() {
-		return departmentName;
-	}
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
-	}
-	public String getDepartmentAddress() {
-		return departmentAddress;
-	}
-	public void setDepartmentAddress(String departmentAddress) {
-		this.departmentAddress = departmentAddress;
-	}
-	public String getDepartmentCode() {
-		return departmentCode;
-	}
-	public void setDepartmentCode(String departmentCode) {
-		this.departmentCode = departmentCode;
-	}
 
 }
