@@ -2,7 +2,9 @@ package com.Ujjwal.springBootDemo.service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
+import com.Ujjwal.springBootDemo.error.DepartmentNotFoundException;
 import org.mockito.internal.matchers.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,9 +33,15 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public Department fetchDepartmentById(Long departmentId) {
+	public Department fetchDepartmentById(Long departmentId) throws DepartmentNotFoundException {
 	
-		return departmentRepository.findById(departmentId).get();
+		Optional<Department> department =  departmentRepository.findById(departmentId);
+
+		if(department.isEmpty()){
+			throw new DepartmentNotFoundException("Department Not Available");
+		}
+		return department.get();
+
 	}
 
 	@Override

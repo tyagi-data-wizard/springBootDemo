@@ -3,6 +3,7 @@ package com.Ujjwal.springBootDemo.service;
 import java.util.List;
 
 import com.Ujjwal.springBootDemo.entity.Department;
+import com.Ujjwal.springBootDemo.error.DepartmentNotFoundException;
 
 public interface DepartmentService {
 
@@ -10,7 +11,7 @@ public interface DepartmentService {
 
 	public List<Department> fetchDepartmentList();
 
-	public Department fetchDepartmentById(Long departmentId);
+	public Department fetchDepartmentById(Long departmentId) throws DepartmentNotFoundException;
 
 	public void deleteDepartmentById(Long departmentId);
 

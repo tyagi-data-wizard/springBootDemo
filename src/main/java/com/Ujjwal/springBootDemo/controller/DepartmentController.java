@@ -2,6 +2,7 @@ package com.Ujjwal.springBootDemo.controller;
 
 import java.util.List;
 
+import com.Ujjwal.springBootDemo.error.DepartmentNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,6 @@ public class DepartmentController {
 	
 	@PostMapping("/departments")
 	public Department saveDepartment(@Valid @RequestBody Department department) {
-		
 		// we dont want to create object manually so we will define so we use @Autowired
 		//DepartmentService service = new DepartmentServiceImpl();			
 		logger.info("Inside saveDepartment of DepartmentController");
@@ -45,7 +45,7 @@ public class DepartmentController {
 	}
 	
 	@GetMapping("/departments/{id}")
-	public Department fetchDepartmentById(@PathVariable("id") Long departmentId) {
+	public Department fetchDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
 		logger.info("Inside fetchDepartmentById of DepartmentController");
 		return departmentService.fetchDepartmentById(departmentId);
 		
@@ -55,7 +55,7 @@ public class DepartmentController {
 	public String deleteDepartmentById(@PathVariable("id") Long departmentId) {
 		logger.info("Inside deleteDepartmentById of DepartmentController");
 		departmentService.deleteDepartmentById(departmentId);
-		return "Department Deleted Successfullyy!";
+		return "Department Deleted Successfully!";
 		
 	}
 
