@@ -4,6 +4,7 @@ import com.Ujjwal.springBootDemo.entity.Department;
 import com.Ujjwal.springBootDemo.repository.DepartmentRepository;
 import lombok.Builder;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,10 @@ class DepartmentServiceTest {
         Department department =
                         Department.builder()
                         .departmentName("IT")
-                        .departmentAddress("Banglore")
+                        .departmentAddress("Bangalore")
                         .departmentCode("IT-07")
                         .departmentId(1L)
-                                .build();
+                        .build();
 
         //when calling fetchDepartmentByName it will call findByDepartmentNameIgnoreCase;
         // and then our code will return this object that we created in setUp()
@@ -45,11 +46,13 @@ class DepartmentServiceTest {
     }
 
     @Test
+    @DisplayName("Get Data based on Valid Department Name")     // we can use this annotation to change display name for better understanding
+    // we can use @Disabled for disabling any particular test cases/methods
     public void whenValidDepartmentName_thenDepartmentShouldFound(){
         String departmentName = "IT";
         // we just want to test the service layer, and not call the actual code after it
-        // that which would be called after calling method
-        // so we will just the mock the data/layer
+        // which would be called after calling method
+        // we will just mock the data/layer
         // ( in this case it is calling departmentRepository.findByDepartmentNameIgnoreCase(departmentName);)
         Department found = departmentService.fetchDepartmentByName(departmentName);
         assertEquals(departmentName,found.getDepartmentName());
