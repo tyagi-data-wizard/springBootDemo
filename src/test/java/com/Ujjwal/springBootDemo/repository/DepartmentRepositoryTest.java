@@ -5,13 +5,15 @@ import lombok.Data;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
-//for testing repository we can use in memory db or containerized databases
-@Data
+//for testing repository we can use in memory db or containerized databases or test db
+//this method helps us to test repository layer without making changes to our db
+@DataJpaTest
 class DepartmentRepositoryTest {
 
     @Autowired
@@ -33,10 +35,6 @@ class DepartmentRepositoryTest {
     public void whenFindById_theReturnDepartment(){
         Department department = departmentRepository.findById(1L).get();
         assertEquals(department.getDepartmentName(),"Mechanical");
-
-
-
-
 
     }
 }
