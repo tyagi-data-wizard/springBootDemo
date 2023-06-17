@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driveClassName: org.postgresql.Driver
+    driver-class-name: org.postgresql.Driver
+    password: 004Iamfo@
+    url: jdbc:postgresql://localhost:5432/dcbapp
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+welcome:
+  message: Welcome to Tyagi's Project!
