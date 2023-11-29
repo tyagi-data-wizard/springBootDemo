@@ -23,7 +23,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public Department saveDepartment(Department department) {
 		
 		//using jpa inbuilt functionality to save our entity; jpa will make the table itself 
-		return departmentRepository.save(department);			 
+		return departmentRepository.save(department);
 	}
 
 	@Override
