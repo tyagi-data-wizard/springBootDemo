@@ -4,7 +4,7 @@ spring:
   datasource:
     driveClassName: org.postgresql.Driver
     driver-class-name: org.postgresql.Driver
-    password: 004Iamfo@
+    password:
     url: jdbc:postgresql://localhost:5432/dcbapp
     username: postgres
   jpa:
