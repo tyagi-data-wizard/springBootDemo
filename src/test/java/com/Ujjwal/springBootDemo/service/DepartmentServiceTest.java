@@ -1,6 +1,7 @@
 package com.Ujjwal.springBootDemo.service;
 
 import com.Ujjwal.springBootDemo.entity.Department;
+import com.Ujjwal.springBootDemo.error.DepartmentNotFoundException;
 import com.Ujjwal.springBootDemo.repository.DepartmentRepository;
 import lombok.Builder;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.reactive.server.WebTestClient;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,10 +43,20 @@ class DepartmentServiceTest {
                         .departmentId(1L)
                         .build();
 
+        Optional<Department> departmentOptional = Optional.ofNullable(department);
+
+        List<Department> departmentList = new ArrayList<>();
+        departmentList.add(department);
+
+
         //when calling fetchDepartmentByName it will call findByDepartmentNameIgnoreCase;
         // and then our code will return this object that we created in setUp()
         Mockito.when(departmentRepository.findByDepartmentNameIgnoreCase("IT"))
                 .thenReturn(department);
+
+       Mockito.when(departmentRepository.findById(1L)).thenReturn(departmentOptional);
+
+        Mockito.when(departmentRepository.findAll()).thenReturn(departmentList);
 
     }
 
@@ -57,6 +72,27 @@ class DepartmentServiceTest {
         Department found = departmentService.fetchDepartmentByName(departmentName);
         assertEquals(departmentName,found.getDepartmentName());
 
+    }
+
+
+    @Test
+    @DisplayName("Fetch all Departments")
+    public void fetchDepartmentListTest(){
+        List<Department> departmentList = departmentService.fetchDepartmentList();
+
+        assertNotNull(departmentList);
+
+    }
+
+    @Test
+    @DisplayName("Get data based on valid department id")
+    public void whenValidDepartmentId_thenDepartmentShouldFound() throws DepartmentNotFoundException {
+        Long departmentId = 1L;
+
+
+        Department found = departmentService.fetchDepartmentById(departmentId);
+     //assertDoesNotThrow(DepartmentNotFoundException);
+        assertEquals(departmentId,found.getDepartmentId());
     }
 
 
