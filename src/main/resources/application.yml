@@ -12,4 +12,3 @@ server:
       ddl-auto: update
 welcome:
   message: Welcome to Tyagi's Project!
-
